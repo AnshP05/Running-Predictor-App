@@ -1,0 +1,95 @@
+# Running Predictor App — MVP Definition
+
+## Purpose
+Build the smallest complete version of the app that proves the full pipeline works from frontend to backend and returns useful race predictions.
+
+## MVP Goal
+A user can enter:
+- a race time
+- a race distance
+
+The app will then:
+- send that data from the frontend to the backend
+- use the Riegel formula on the backend
+- return predicted times for distances from 800m to the marathon
+- display those predictions on the frontend
+
+## Core Question This MVP Answers
+Can we successfully build a working end-to-end running prediction app with:
+- user input
+- API communication
+- backend logic
+- displayed output
+
+## MVP Scope
+
+### Included
+- frontend input for time
+- frontend input for distance
+- frontend request sent to backend API
+- backend parsing of request data
+- backend prediction logic using the Riegel formula
+- backend response containing predictions for standard race distances
+- frontend display of returned predictions
+
+### Standard Output Distances
+- 800m
+- 1500m
+- Mile
+- 3000m
+- 5K
+- 8K
+- 10K
+- 15K
+- Half Marathon
+- Marathon
+
+## Assumptions
+- input time will be entered in the expected format
+- input distance will be valid
+- no advanced user handling is needed
+- no database is needed
+- no accounts or saved data are needed
+
+## Not Included in This MVP
+- machine learning model
+- CSS polish or advanced styling
+- authentication/login
+- user accounts
+- saving past predictions
+- charts or graphs
+- advanced validation
+- multiple race inputs
+- training history
+- personalized adjustments
+- mobile optimization
+- production deployment concerns beyond basic local functionality
+
+## Success Criteria
+The MVP is complete when:
+1. the user can enter a time and distance in the frontend
+2. the frontend successfully sends the data to the backend
+3. the backend correctly applies the Riegel formula
+4. the backend returns predictions for all target distances
+5. the frontend displays the predictions without errors
+
+## Simple User Flow
+1. User opens the app
+2. User enters a race time
+3. User enters a race distance
+4. User submits the form
+5. Frontend sends request to backend
+6. Backend calculates predictions
+7. Backend returns results
+8. Frontend displays predictions
+
+## Why This MVP Matters
+This MVP proves the most important foundation of the project:
+the app can actually take running data, process it, and return useful predictions through a full frontend-backend workflow.
+
+## After MVP Completion
+Once this MVP works, we will reflect on:
+- what felt clunky
+- what broke
+- what should be added next
+- whether the next priority is validation, better UI, or ML integration
