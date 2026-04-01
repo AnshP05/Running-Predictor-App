@@ -4,24 +4,27 @@ import ResultsList from './components/ResultsList'
 import { useState } from 'react'
 
 // Globals
-const sampleResponse = {
-  predictions: [
-    { distance: '800m', predictedTime: '2:08' },
-    { distance: '1500m', predictedTime: '4:12' },
-    { distance: 'Mile', predictedTime: '4:31' },
-    { distance: '3000m', predictedTime: '9:05'}
-  ]
-}
+
 
 
 function App() {
   const [results, setResults] = useState([])
 
   // Functions
-  function handlePredict( time, distance) {
-    // Send data to api
-    //results = someApiCall(time, distance)
-    setResults(/*results*/sampleResponse.predictions)
+  async function handlePredict( time, distance) {
+    const response = await fetch ("http://127.0.0.1:8000/predict",
+      {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        time: time,
+        distance: distance
+      })
+    })
+    const data = await response.json();
+    setResults(data.predictions)
   }
   return (
     <div className="app">
