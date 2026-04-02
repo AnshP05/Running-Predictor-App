@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from app.riegel_predictions import generatePredictions
 
 app = FastAPI()
 
@@ -14,7 +15,7 @@ app.add_middleware(
 
 class PredictionRequest(BaseModel):
     time: str
-    distance: str
+    distance: float
 
 @app.get("/")
 def home():
@@ -22,12 +23,10 @@ def home():
 
 @app.post("/predict")
 def predict(request: PredictionRequest):
+    predictions = generatePredictions(request.time, request.distance)
+    
     return {
         "receivedTime": request.time,
         "receivedDistance": request.distance,
-        "predictions": [
-            {"distance": "800m", "predictedTime": "2:03"},
-            {"distance": "1500m", "predictedTime": "4:19"},
-            {"distance": "Mile", "predictedTime": "4:32"}
-        ]
+        "predictions": predictions
     }
