@@ -14,6 +14,7 @@ function App() {
 
   // Functions
   async function handlePredict( time, distance) {
+    const numericDistance = parseFloat(distance)
     const response = await fetch ("http://127.0.0.1:8000/predict",
       {
       method: "POST", 
@@ -22,7 +23,7 @@ function App() {
       },
       body: JSON.stringify({
         time: time,
-        distance: distance
+        distance: numericDistance
       })
     })
     const data = await response.json();
