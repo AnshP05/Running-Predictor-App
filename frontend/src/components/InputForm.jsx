@@ -4,7 +4,6 @@ import { useState } from 'react'
 const distanceOptions = [
   { label: '800m', value: '800' },
   { label: '1500m', value: '1500' },
-  { label: '1600m', value: '1600' },
   { label: 'Mile', value: '1609' },
   { label: '3000m', value: '3000' },
   { label: '3200m', value: '3200' },

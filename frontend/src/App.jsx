@@ -15,18 +15,36 @@ function App() {
   // Functions
   async function handlePredict( time, distance) {
     const numericDistance = parseFloat(distance)
-    const response = await fetch ("http://127.0.0.1:8000/predict",
+    let response = {}
+    if (numericDistance == 5000) {
+      response = await fetch ("http://127.0.0.1:8000/predict-ml",
       {
-      method: "POST", 
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        time: time,
-        distance: numericDistance
+        method: "POST", 
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          time: time,
+          distance: numericDistance
+        })
+      }) 
+    } else {
+      response = await fetch ("http://127.0.0.1:8000/predict",
+      {
+        method: "POST", 
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          time: time,
+          distance: numericDistance
+        })
       })
-    })
+    }
+
+    
     const data = await response.json();
+    console.log(data.predictions)
     setResults(data.predictions)
   }
   return (
